@@ -1,0 +1,180 @@
+/**
+除登录页面外，大屏布局
+body高度为100%
+溢出省略
+一个页面四类数据表页
+动效切换
+ ________________________________________________________________________
+|_________________________________header_________________________________|
+|        |                 |        ||        |                 |        |
+|  left  |     center      |  right ||  left  |     center      |  right |
+|        |                 |        ||        |                 |        |
+|________|_________________|________||________|_________________|________|
+*/
+@font-color: rgb(0, 255, 246);
+@header-font: 1.5rem;
+html{
+    //rem相对于根元素百分比 
+    font-size: 16px;
+}
+body, html{
+    height: 100%;
+    max-height: 100%;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    list-style: none;
+    white-space: nowrap;
+}
+*::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width : 5px;  /*高宽分别对应横竖滚动条的尺寸*/
+}
+*::-webkit-scrollbar-thumb { 
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    background:@font-color;
+}
+*::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    border-radius: 10px;
+    background: black;
+}
+body{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-image: url('../img/datas.jpg');
+    background-size: 100% 100%; 
+    .chart-item{
+        display: flex; 
+        flex-direction: column;
+        padding: 8px 15px;
+        border: 1px solid @font-color;
+        border-radius: 3px;  
+    }
+    .chart-title{
+        margin-bottom: 15px;
+        color: @font-color;
+        font-size: 20px;
+        font-weight: bold;
+        text-shadow: 0 0 10px @font-color;
+        .issure-number{
+            float: right;
+            color: #FCC030;
+        }
+    }
+    .line{
+        border-bottom: 1.0px solid #026784;
+        margin: 10px 0;
+    }
+    .chart{
+        flex-grow: 1;
+    }
+    header{
+        display: flex;
+        justify-content: space-between;
+        color: @font-color;
+        line-height: 3.0rem;
+        text-shadow: 3px 3px 50px @font-color;
+        .header-left, .header-right{
+            position: absolute;
+            display: flex;
+            line-height: 60px;
+            align-items: center;
+            letter-spacing: 1px;
+            font-size: @header-font;
+            img{
+                margin: 0 30px;
+            }
+        }
+        >.header-left{
+            left: 20px;
+            .campus-select{
+                color: darken(@font-color, 15%);
+                position: relative;
+                cursor: pointer;
+                img{
+                    margin: 0 10px;
+                }
+                ul{
+                    background-color: darken(#2DB1CC, 60%);
+                    color: darken(@font-color, 15%);
+                    z-index: 1;
+                    display: none;
+                    border-radius: 5px;
+                    padding: 0 10px;
+                    width: 100%;
+                    border: 1px solid @font-color;
+                    top: 60px;
+                    position: absolute;
+                    left: -10px;
+                    li{
+                        line-height: 50px;
+                        text-align: center;
+                    }
+                    li:hover{
+                        color: lighten(@font-color, 10%);
+                    }
+                    li:first-child{
+                        border-bottom: 1px solid @font-color;
+                    }
+                }
+            }
+        }
+        >.header-right{
+            right: 20px;
+            .date-box{
+                color: darken(@font-color, 15%);
+            }
+            .login-out{
+                cursor: pointer;
+            }
+        }
+        >.header-center{
+            letter-spacing: 3px;
+            margin: 0 auto;
+            font-weight: bolder;
+            font-size: 2.0rem;
+            padding-top: 15px;
+            display: flex;
+            justify-content: center;
+            text-shadow: 0 0 10px @font-color;
+            span{
+                margin: 0 20px;
+            }
+            img{
+                margin-top: 0.7rem;
+                height: 31px;
+                cursor: pointer;
+            }
+        }
+    }
+    .content-box{
+        position: relative;
+        flex-grow: 1;
+        display: flex;
+        overflow: hidden;
+        .content{
+            min-width: 100%;
+            height: 100%;
+            padding: 10px 20px 20px;
+            // flex-shrink: 1;
+            overflow: hidden;
+            display: flex;
+            >li{
+                color: white;
+                // background-image: radial-gradient(rgba(0, 255, 246, .1), rgba(0, 255, 246, 0));
+            }
+            .left, .right{
+                width: 27%;
+            }
+            .center{
+                width: 46%;
+            }
+        }
+    }
+}

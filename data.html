@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie = edge, chrome = 1">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <title>疫情统计</title>
+    <link rel="stylesheet" href="./css/data.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./layui/src/css/layui.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/map/china.js"></script>
+    <script src="./js/map/p/province/shandong.js"></script>
+    <script id="provJS" type="text/javascript"></script>
+    <script src="./js/map/province/anhui.js"></script>
+    <script src="./layui/src/layui.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img style="height: 20px" src="./img/icon/logo.png" alt="">
+            <div class="campus-select" style="visibility: hidden">
+                <span class="campus">青岛校区</span>
+                <img src="./img/icon/select.png" alt="">
+                <ul>
+                    <li>青岛校区</li>
+                    <li>临沂校区</li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-center">
+            <img class="to-left" src="./img/icon/up.png" alt="上一页">
+            <span>青岛理工大学疫情管理系统</span>
+            <img class="to-right" src="./img/icon/down.png" alt="下一页">
+        </div>
+        <div class="header-right">
+            <span class="date-box">
+                <span class="date">----/--/--</span>
+                <span class="time">--:--</span>
+            </span>
+            <img class="login-out" style="height: 26px" src="./img/icon/login-out.png" alt="">
+        </div>
+    </header>
+    <div class="content-box">
+        <ul class="content">
+            <li class="left">
+                <div class="chart-item">
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>智慧就业平台统计数据</span>
+                    </div>
+                    <ul class="stu-data">
+                        <li>
+                            <span>访问量</span>
+                            <span>
+                                <span data-set="clickCount">--</span>
+                                <span>次</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span>企业邀约</span>
+                            <span>
+                                <span data-set="markedResumeCount">--</span>
+                                <span>人</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span>投递简历</span>
+                            <span>
+                                <span data-set="resumeCount">--</span>
+                                <span>份</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span>注册企业</span>
+                            <span>
+                                <span data-set="companyCount">--</span>
+                                <span>家</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span>招聘岗位</span>
+                            <span>
+                                <span data-set="jobCount">--</span>
+                                <span>个</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span>毕业学生</span>
+                            <span>
+                                <span data-set="studentCount">--</span>
+                                <span>人</span>
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="line"></div>
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>全校学生健康数据</span>
+                    </div>
+                    <div class="prov-detail">
+                        <ul class="type">
+                            <li class="type-A">
+                                <span>A类</span>
+                                <span class="typeA">--</span>
+                            </li>
+                            <li class="type-B">
+                                <span>B类</span>
+                                <span class="typeB">--</span>
+                            </li>
+                            <li class="type-C">
+                                <span>C类</span>
+                                <span class="typeC">--</span>
+                            </li>
+                            <li>
+                                <span>总人数</span>
+                                <span class="totalStudent">--</span>
+                            </li>
+                        </ul>
+                        <div class="chart" id="left-bottom-chart">
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="center">
+                <div class="country-data">
+                    <h3>全国（含港澳台）截至<span class="month"></span>月<span class="day"></span>日数据统计</h3>
+                    <ul>
+                        <li>
+                            <span>确诊</span>
+                            <span>
+                                <span class="confirmed">0</span>
+                                <span>例</span>
+                            </span>
+                            <span class="yestoday">较昨日 + 0</span>
+                        </li>
+                        <li>
+                            <span>疑似</span>
+                            <span>
+                                <span class="suspected">0</span>
+                                <span>例</span>
+                            </span>
+                            <span class="yestoday">较昨日 + 0</span>
+                        </li>
+                        <li>
+                            <span>治愈</span>
+                            <span>
+                                <span class="cured">0</span>
+                                <span>例</span>
+                            </span>
+                            <span class="yestoday">较昨日 + 0</span>
+                        </li>
+                        <li>
+                            <span>死亡</span>
+                            <span>
+                                <span class="dead">0</span>
+                                <span>例</span>
+                            </span>
+                            <span class="yestoday">较昨日 + 0</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="country-map chart-item" style="border: none;">
+                    <div class="filter-box">
+                        <ul class="layui-form">
+                            <li class="layui-form-item">
+                                <select name="academy">
+                                    <option value="">全部学院</option>
+                                  </select>
+                            </li>
+                            <li class="layui-form-item">
+                                <select name="stuType">
+                                    <option value="">全部类型</option>
+                                    <option value="本科">本科生</option>
+                                    <option value="硕士">研究生</option>
+                                    <option value="博士">博士生</option>
+                                    <option value="专科">专科生</option>
+                                  </select>
+                            </li>
+                            <li class="layui-form-item">
+                                <select name="type">
+                                    <option value="">全部类别</option>
+                                    <option value="A">A类</option>
+                                    <option value="B">B类</option>
+                                    <option value="C">C类</option>
+                                  </select>
+                            </li>
+                            <li lay-submit lay-filter='filter-1'>
+                                <span>筛选</span>
+                            </li>
+                        </ul>
+                        <div class="hide-detail" style="font-size: 1.1rem;line-height: 38px">
+                            <span class="fa fa-square-o"></span>
+                            <span>&nbsp;隐藏学生数据</span>
+                        </div>
+                    </div>
+                    <span class="fa fa-undo">&nbsp;全国</span>
+                    <div class="chart" id="china"></div>
+                </div>
+                <div class="stu-type-data chart-item" style="border: none">
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>该省学生健康类别人数</span>
+                    </div>
+                    <div class="chart" id="center-bottom-chart">
+                        <ul>
+                            <li>
+                                <span>A类</span>
+                                <span class='bottom-A'>--人</span>
+                            </li>
+                            <li>
+                                <span>B类</span>
+                                <span class='bottom-B'>--人</span>
+                            </li>
+                            <li>
+                                <span>C类</span>
+                                <span class='bottom-C'>--人</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="right">
+                <div class="chart-item">
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>全国疫情累计趋势图</span>
+                    </div>
+                    <div class="chart" id="right-top-chart"></div>
+                </div>
+                <div class="chart-item">
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span class='case'>中国病例</span>
+                    </div>
+                    <div class="chart list">
+                        <div class="title">
+                            <span>省份</span>
+                            <span>确诊</span>
+                            <span>死亡</span>
+                            <span>治愈</span>
+                        </div>
+                        <ul class="detail"></ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="content">
+            <li class="left">
+                <div class="chart-item">
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>智慧就业平台统计数据</span>
+                    </div>
+                    <ul class="stu-data">
+                            <li>
+                                <span>访问量</span>
+                                <span>
+                                    <span data-set="clickCount">--</span>
+                                    <span>次</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span>企业邀约</span>
+                                <span>
+                                    <span data-set="markedResumeCount">--</span>
+                                    <span>人</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span>投递简历</span>
+                                <span>
+                                    <span data-set="resumeCount">--</span>
+                                    <span>份</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span>注册企业</span>
+                                <span>
+                                    <span data-set="companyCount">--</span>
+                                    <span>家</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span>招聘岗位</span>
+                                <span>
+                                    <span data-set="jobCount">--</span>
+                                    <span>个</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span>毕业学生</span>
+                                <span>
+                                    <span data-set="studentCount">--</span>
+                                    <span>人</span>
+                                </span>
+                            </li>
+                    </ul>
+                    <div class="line"></div>
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>全校统计数据</span>
+                    </div>
+                    <div class="left-center-box">
+                        <div id="left-center-chart"></div>
+                        <ul class="legend">
+                            <li>
+                                <span>当前累计返校</span>
+                                <span data-set="totalBackSchoolCount">--</span>
+                            </li>
+                            <li>
+                                <span>当日预计返校</span>
+                                <span data-set="appointedCurrentBackSchoolCount">--</span>
+                            </li>
+                            <li>
+                                <span>当日正常</span>
+                                <span data-set="currentNormalCount">--</span>
+                            </li>
+                            <li>
+                                <span>当日异常</span>
+                                <span data-set="currentAbnormalCount">--</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="line"></div>
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>各校区及学院统计数据</span>
+                    </div>
+                    <div class="campus-list academy-list">
+
+                    </div>
+                    <div class="chart list">
+                        <div class="title">
+                            <span class="line-center">校区学院</span>
+                            <span class="line-center">全部学生</span>
+                            <span class="line-center">累计返校</span>
+                            <span>当日预<br/>计返校</span>
+                            <span>当日实<br/>际入校</span>
+                            <span class="line-center">当日异常</span>
+                        </div>
+                        <ul class="detail">
+
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="center">
+                <div class="center-top">
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>疫情智慧预警系统</span>
+                    </div>
+                    <div class="rate-info">
+                        <span>截至到<b class="time-stop"></b>经疫情大数据分析系统排查，发现我校风险共<b class='rate-num'>--</b>条 </span>
+                        <span class="rate-detail">详情>></span>
+                    </div>
+                </div>
+                <div class="center-center-box chart-item" style="border:none;padding:0">
+                    <div class="filter-box">
+                        <ul class="layui-form">
+                            <li class="layui-form-item">
+                                <select name="academy">
+                                    <option value="">全部学院</option>
+                                  </select>
+                            </li>
+                            <li class="layui-form-item">
+                                <select name="stuType">
+                                    <option value="">全部类型</option>
+                                    <option value="本科">本科生</option>
+                                    <option value="硕士">研究生</option>
+                                    <option value="博士">博士生</option>
+                                    <option value="专科">专科生</option>
+                                  </select>
+                            </li>
+                            <li class="layui-form-item">
+                                <select name="type">
+                                    <option value="">全部类别</option>
+                                    <option value="A">A类</option>
+                                    <option value="B">B类</option>
+                                    <option value="C">C类</option>
+                                  </select>
+                            </li>
+                            <li lay-submit lay-filter='filter-2'>
+                                <span>筛选</span>
+                            </li>
+                        </ul>
+                        <div class="toggle-date">
+                            <span style="color: aqua;" class="fa fa-calendar"></span>
+                            <input type="text" id="date">
+                        </div>
+                    </div>
+                    <div class="chart" id="move"></div>
+                </div>
+                <div class="center-bottom-box">
+                    <ul class="vehicle"></ul>
+                </div>
+            </li>
+            <li class="right">
+                <div class="chart-item right-top-box">
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>异常报告</span>
+                        <span class="issure-number">--条</span>
+                    </div>
+                    <ul class="right-top-list"></ul>
+                </div>
+                <div class="chart-item">
+                    <div class="campus-list"></div>
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>接站申请统计数据</span>
+                    </div>
+                    <div id="station"></div>
+                    <div class="line"></div>
+                    <div class="chart-title">
+                        <img src="./img/icon/login-tip.png" alt="">
+                        <span>各宿舍统计数据</span>
+                    </div>
+                    <div class="list right-bottom-box">
+                        <div class="title">
+                            <span class='line-center'>宿舍</span>
+                            <span class='line-center'>学生总数</span>
+                            <span class='line-center'>累计入住</span>
+                            <span>当日预<br>计入住</span>
+                            <span>当日实<br>际入住</span>
+                        </div>
+                        <ul class="detail"></ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="content">
+            
+        </ul>
+        <div class="rate-box">
+            <div class="mode"></div>
+            <div class="rate-alert">
+                <div class="chart-title">
+                    <img src="./img/icon/login-tip.png" alt="">
+                    <span>疫情智慧预警系统</span>
+                </div>
+                <ul>
+                    <!-- <li></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="load-mode">
+            <span class="fa fa-spinner"></span>
+        </div>
+    </div>
+    <script>
+        window.onload = function(){
+            layui.use(['form', 'layer', 'laydate'], function(){
+                let form = layui.form;
+                let layer = layui.layer;
+                let laydate = layui.laydate;
+                if(!localStorage.getItem('screenToken')){
+                    layer.msg('请登录');
+                    setTimeout(()=>{
+                        location.replace('login.html');
+                    }, 1500);
+                }
+                $('.login-out').click(function(){
+                    layer.open({
+                        title: '友情提示',
+                        content: '确定要退出登录吗？',
+                        btn: ['确定', '取消'],
+                        yes: function(){
+                            localStorage.clear();
+                            layer.closeAll();
+                            location.replace('login.html');
+                        },
+                        btn2: function(){
+                            layer.closeAll();
+                        }
+                    });
+                });
+                const IP = 'https://lab.isaaclin.cn/nCoV/api/';
+                const globalIP = 'https://xsc.qut.edu.cn/qutyqgl/';
+                let provType = [];
+                let color = ['#03d6c4', '#ff7b06', '#ff0606'];//色盘颜色
+                let LCC2 = echarts.init(document.getElementById('left-center-chart'));
+                let campusStationData;
+                let station = echarts.init(document.getElementById('station'));
+                laydate.render({
+                    elem: '#date',
+                    type: 'date',
+                    value: new Date().toLocaleDateString(),
+                    format: 'yyyy/MM/dd',
+                    showBottom: false,
+                    done: function(value, date){
+                        toggleDate(value);
+                    }
+                });
+                let nowDate = new Date().toLocaleDateString();
+                toggleDate(nowDate);
+                setInterval(function(){
+                    toggleDate(nowDate);
+                }, 10000);
+                let activeStationCampus = '';//当前接站的active校区
+                let activeAcademy = '';//当前active的校区
+                function toggleDate(date){
+                    nowDate = date;
+                    let query = '';
+                    if(date != new Date().toLocaleDateString()){
+                        query = '?date=' + date.split('/').join('-');
+                    }
+                    $.ajax({
+                    url: globalIP + 'api/data/dataone' + query,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(res){
+                        //就业数据
+                        console.log(res.content.dataone);
+                        let jyData = res.content.jywData;
+                        let dataone = res.content.dataone;
+                        provType = dataone.locationToTypeMap;
+                        let jyDoms = $('.stu-data [data-set]');
+                        for(let i = 0;i < jyDoms.length; i++){
+                            let self = jyDoms[i];
+                            $(self).html(jyData[$(self).attr('data-set')]);
+                        }
+                        campusStationData = dataone.campusPickupCount;
+                        //1：left-bottom
+                        $('.rate-num').html(dataone.routeMatchResult.length);
+                        if(dataone.routeMatchResult.length==0){
+                            $('.rate-detail').css('display', 'none');
+                        }
+                        $('.time-stop').html(dataone.generateTime);
+                        let rateHtml = ``;
+                        for(let item of dataone.routeMatchResult){
+                            rateHtml += `<li style='margin: 10px 0 30px;'>
+                                <span>${item.travelTime}</span>
+                                <span style='white-space: pre-wrap'>由 ${item.patientPosStart} 到 ${item.patientPosEnd}</span>
+                                <p>
+                                    <span>车次：${item.vehicleCode}</span><br>
+                                    <span>姓名：${item.studentName}</span><br>
+                                    <span>出发地：${item.studentPosStart}</span><br>
+                                    <span>校区：${item.studentCampus}</span><br>
+                                    <span>班级：${item.studentClass}</span><br>
+                                    <span>公寓：${item.studentApartment}</span>
+                                </p>
+                            </li>`;
+                        }
+                        $('.rate-alert ul').html(rateHtml);
+                        $('.typeA').html(dataone.totalStudentA);
+                        $('.typeB').html(dataone.totalStudentB);
+                        $('.typeC').html(dataone.totalStudentC);
+                        $('.totalStudent').html(dataone.totalStudent);
+                        let yAxis = [];
+                        let seriesA = [], seriesB = [], seriesC = [];
+                        for(let key in dataone.locationToTypeMap){
+                            yAxis.push(key);
+                            seriesA.push(dataone.locationToTypeMap[key].A);
+                            seriesB.push(dataone.locationToTypeMap[key].B);
+                            seriesC.push(dataone.locationToTypeMap[key].C);
+                        }
+                        initLBC(yAxis, seriesA, seriesB, seriesC);
+                        //2：left-center
+                        //#left-center-chart
+                        let LCC2Option = {
+                            title: {
+                                text: dataone.totalStudent,
+                                subtext: '全校学生',
+                                left: 'center',
+                                top: 'center',
+                                textStyle: {
+                                    color: 'white'
+                                }
+                            },
+                            tooltip: {
+                                show: true,
+                                trigger: 'item',
+                                formatter: '{a} <br/>{b}: {c} ({d}%)'
+                            },
+                            grid:{
+                                top: 0
+                            },
+                            color,
+                            series: [
+                                {
+                                    name: '学生来源',
+                                    type: 'pie',
+                                    startAngle: 160,
+                                    radius: ['60%', '90%'],
+                                    avoidLabelOverlap: false,
+                                    // clockwise: false,
+                                    label: {
+                                        normal: {
+                                            formatter: function(data){
+                                                let result = data.name[0];
+                                                return result + ':' + data.value + '人';
+                                            },
+                                            show: false,
+                                            textStyle:{
+                                                fontSize: 15
+                                            },
+                                        },
+                                        emphasis: {
+                                            show: false
+                                        }
+                                    },
+                                    labelLine: {
+                                        normal: {
+                                            show: false
+                                        }
+                                    },
+                                    data: [
+                                        {value: dataone.totalStudentA, name: 'A类'},
+                                        {value: dataone.totalStudentB, name: 'B类'},
+                                        {value: dataone.totalStudentC, name: 'C类'}
+                                    ]
+                                }
+                            ]
+                        };
+                        LCC2.setOption(LCC2Option);
+                        let legend = $('.content:nth-child(2) .legend [data-set]');
+                        for(let i = 0; i < legend.length; i++){
+                            let self = legend[i];
+                            $(self).html(dataone[$(self).attr('data-set')]);
+                        }
+                        //2：left-bottom
+                        let LB2Html = ``, RB2Html = ``, campus = ``;;
+                        for(let item of dataone.campusStudentCount){
+                            let academyHtml = ``;
+                            if(activeAcademy == ''){
+                                //默认显示第一个校区
+                            }else{
+                                //显示选中的校区
+                            }
+                            for(let aca of item.studentDepartmentChildren){
+                                academyHtml += `<li>
+                                    <span style='text-align:left'>${aca.departmentName}</span>
+                                    <span style='text-align:right'>${aca.totalStudent}</span>
+                                    <span style='text-align:right'>${aca.totalBackSchoolCount}</span>
+                                    <span style='text-align:right'>${aca.appointedCurrentBackSchoolCount}</span>
+                                    <span style='text-align:right'>${aca.currentBackSchoolCount}</span>
+                                    <span style='text-align:right'>${aca.currentAbnormal}</span>
+                                </li>`;
+                            }
+                            LB2Html += `<li style='flex-direction: column' data-campus='${item.departmentName}'>
+                                <div class='toggle'>
+                                    <span class='fa'>&nbsp;&nbsp;${item.departmentName}</span>
+                                    <span style='text-align: right'>${item.totalStudent}</span>
+                                    <span style='text-align: right'>${item.totalBackSchoolCount}</span>
+                                    <span style='text-align: right'>${item.appointedCurrentBackSchoolCount}</span>
+                                    <span style='text-align: right'>${item.currentBackSchoolCount}</span>
+                                    <span style='text-align: right'>${item.currentAbnormal}</span>
+                                </div>
+                                <ul>
+                                    ${academyHtml}
+                                </ul>
+                            </li>`;
+                            for(let dorm of item.studentApartmentChildren){
+                                RB2Html += `<li data-campus = '${item.departmentName}'>
+                                    <span>${dorm.departmentName}</span>
+                                    <span>${dorm.totalStudent}</span>
+                                    <span>${dorm.totalBackSchoolCount}</span>
+                                    <span>${dorm.appointedCurrentBackSchoolCount}</span>
+                                    <span>${dorm.currentBackSchoolCount}</span>
+                                    <span class='degree' style='width:${dorm.totalBackSchoolCount/(dorm.totalStudent)*80}%'><span>
+                                </li>`;
+                            }
+                        }
+                        $('.content:nth-child(2) .right .detail').html(RB2Html);
+                        let campusArr = Object.keys(campusStationData);
+                        for(let item of campusArr){
+                            campus += `<span data-campus=${item}>${item}</span>`;
+                        }
+                        $('.academy-list').html(campus)
+                            .on('click', 'span', function(){
+                                $(this).addClass('active')
+                                    .siblings().removeClass('active');
+                                let type = $(this).attr('data-campus');
+                                activeAcademy = type;
+                                $(`.content:nth-child(2) .left .detail [data-campus]`).css('display', 'none');
+                                $(`.content:nth-child(2) .left .detail [data-campus=${activeAcademy}]`).css('display', 'block');
+                            })
+                        $('.content:nth-child(2) .right .campus-list')
+                            .html(campus)
+                            .on('click', 'span', function(){
+                                let type = $(this).html();
+                                $(this).addClass('active')
+                                    .siblings().removeClass('active');
+                                initStation(type);
+                                $(`.content:nth-child(2) .right .detail [data-campus]`).css('display', 'none')
+                                $(`.content:nth-child(2) .right .detail [data-campus=${type}]`).css('display', 'flex')
+                                activeStationCampus = $(this).html();
+                            });
+                        if(activeStationCampus === ''){
+                            $('.content:nth-child(2) .right .campus-list span:first-child').click();
+                            activeStationCampus = $('.content:nth-child(2) .right .campus-list span:first-child').html();
+                        }else{
+                            $(`.content:nth-child(2) .right .campus-list span[data-campus=${activeStationCampus}`).click();
+                        }
+                        $('.content:nth-child(2) .left .detail').html(LB2Html);
+                        if(activeAcademy == ''){
+                            activeAcademy = $('.academy-list span:first-child').html();
+                            $('.academy-list span:first-child').click();
+                        }else{
+                            $(`.academy-list span[data-campus=${activeAcademy}]`).click();
+                        }
+                        //取消切换展开功能
+                            // .on('click', '.toggle', function(){
+                            //     if($(this).find('.fa').attr('class').includes('caret-right')){
+                            //         $(this).siblings().css('height', 'unset');
+                            //         $(this).find('.fa').removeClass('fa-caret-right')
+                            //             .addClass('fa-caret-down');
+                            //     }else{
+                            //         $(this).siblings().css('height', 0);
+                            //         $(this).find('.fa').addClass('fa-caret-right')
+                            //             .removeClass('fa-caret-down');
+                            //     }
+                            // });
+                        //2：center-bottom
+                        let CB2Html = ``;
+                        for(let key in dataone.vehicleCount){
+                            CB2Html += `<li>
+                                <span>${key}</span>
+                                <span>${dataone.vehicleCount[key]}人次</span>
+                            </li>`;
+                        }
+                        $('.content:nth-child(2) .vehicle').html(CB2Html);
+                        //2：right-top
+                        let RT2Html = ``;
+                        for(let item of dataone.abnormalStudents){
+                            RT2Html += `<li>
+                                <ul class="unusual-item">
+                                    <li>
+                                        <span>${item.privateStatusUpdateTime?item.privateStatusUpdateTime.substring(5, 16):'--:--'}</span>
+                                        <span>&nbsp;&nbsp;(异常提醒)</span>
+                                        <span>${item.campus}</span>
+                                    </li>
+                                    <li>
+                                        <span>姓名：</span>
+                                        <span>${item.name}</span>
+                                    </li>
+                                    <li>
+                                        <span>学院：</span>
+                                        <span>${item.department}</span>
+                                    </li>
+                                    <li>
+                                        <span>宿舍：</span>
+                                        <span>${item.apartmentName}</span>
+                                    </li>
+                                    <li>
+                                        <span>辅导员：</span>
+                                        <span>${item.counsellorName}</span>
+                                    </li>
+                                    <li>
+                                        <span>辅导员联系电话：</span>
+                                        <span>${item.counsellorPhone}</span>
+                                    </li>
+                                </ul>
+                            </li>`;
+                        }
+                        $('.issure-number').html(dataone.abnormalStudents.length + '条');
+                        if(RT2Html == ''){
+                            RT2Html = '<li style="text-align: center;margin-top: 30px;color: rgb(0, 255, 246);font-size: 1.2rem">暂无异常报告</li>'
+                        }
+                        $('.content:nth-child(2) .right-top-list').html(RT2Html);
+                        //station
+                    }
+                });
+
+                }
+                // 1、区域
+                function initArea(){
+                    //效果
+                    $('.campus-select').hover(function(){
+                        $(this).find('ul').css('display', 'block');
+                    }, function(){
+                        $(this).find('ul').css('display', 'none');
+                    });
+                    //逻辑
+                    $('.campus-select li').click(function(){
+                        $('.campus').html($(this).html());
+                        $('.campus-select').find('ul').css('display', 'none');
+                    });
+                }
+                initArea();
+                //2、时间显示
+                function initDate(){
+                    //日期
+                    let date = new Date();
+                    let year = date.getFullYear();
+                    let month = date.getMonth() + 1;
+                    month = (String(month).length == 1)? ('0' + month): month;
+                    let day = date.getDate();
+                    day = (String(day).length == 1)? ('0' + day): day;
+                    let hour = date.getHours();
+                    hour = String(hour).length == 1? '0' + hour: hour;
+                    let minute = date.getMinutes();
+                    minute = String(minute).length == 1? '0' + minute: minute;
+                    $('.date').html(year + '/' + month + '/' + day);
+                    $('.time').html(hour + ':' + minute);
+                    $('.month').html(month);
+                    $('.day').html(day);
+                    setInterval(function(){
+                        //日期更新，一分钟更新一次
+                        date = new Date();
+                        year = date.getFullYear();
+                        month = date.getMonth() + 1;
+                        month = (String(month).length == 1)? ('0' + month): month;
+                        day = date.getDate();
+                        day = (String(day).length == 1)? ('0' + day): day;
+                        hour = date.getHours();
+                        hour = String(hour).length == 1? '0' + hour: hour;
+                        minute = date.getMinutes();
+                        minute = String(minute).length == 1? '0' + minute: minute;
+                        $('.date').html(year + '/' + month + '/' + day);
+                        $('.time').html(hour + ':' + minute);
+                    }, 60000);
+                }
+                initDate();
+                //-------------------echart-part----------------------------
+                //belong：第一屏
+                //ID：#left-bottom-chart
+                let LBC = echarts.init(document.getElementById('left-bottom-chart'));
+                function initLBC(yAxis, seriesA, seriesB, seriesC){
+                    let LBCOption = {
+                        tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b}: {c}'
+                    },
+                        color: color,
+                        grid: {
+                            top: '3%',
+                            left: '3%',
+                            right: '10%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis: {
+                            show: true,
+                            type: 'value',
+                            axisLabel: {
+                                color: 'white',
+                                interval: 0
+                            },
+                            splitLine: {
+                                show: false
+                            }
+                        },
+                        yAxis: {
+                            type: 'category',
+                            data: yAxis,
+                            axisLabel: {
+                                color: 'white',
+                                interval: 0
+                            }
+                        },
+                        series: [
+                        {
+                                name: 'A类',
+                                type: 'bar',
+                                stack: '总量',
+                                label: {
+                                    show: false,
+                                    position: 'insideRight'
+                                },
+                                data: seriesA,
+                                barWidth: 10
+                            },
+                            {
+                                name: 'B类',
+                                type: 'bar',
+                                stack: '总量',
+                                label: {
+                                    show: false,
+                                    position: 'insideRight'
+                                },
+                                data: seriesB
+                            },
+                            {
+                                name: 'C类',
+                                type: 'bar',
+                                stack: '总量',
+                                label: {
+                                    show: false,
+                                    position: 'insideRight'
+                                },
+                                data: seriesC
+                            }
+                        ],
+                    };
+                    LBC.setOption(LBCOption);
+                }
+                //ID：#center-chart
+                //获取数据f
+                let seriesData;//中国地图数据
+                let proveData = [];//省数据
+                let initMap = false;//地图是否已经初始化完毕
+                let confirmedCount = 0;//确诊数量
+                let curedCount = 0;//治愈数量
+                let suspectedCount = 0;//疑似数量
+                let deadCount = 0;//死亡数量
+                let mapName = 'china';//prove
+                //全国数据
+                //#ID：center-bottom
+                // let CBX = echarts.init(document.getElementById('center-bottom-chart'));
+                // let CBXOption = {
+                //     tooltip: {
+                //         trigger: 'item',
+                //         formatter: '{a} <br/>{b}: {c} '
+                //     },
+                //     color: color,
+                //     grid: [//定义柱状图位置，因为是第一个
+                //         {
+                //             top: '10%',
+                //             left: '25%',
+                //             right: '5%',
+                //             bottom: '0%',
+                //             containLabel: true
+                //         }
+                //     ],
+                //     xAxis: {
+                //         show: false,
+                //         type: 'value',
+                //         axisLabel: {
+                //             color: 'white'
+                //         },
+                //         splitLine: {
+                //             show: false
+                //         }
+                //     },
+                //     yAxis: {
+                //         type: 'category',
+                //         data: [ '专科生', '博士生', '研究生', '本科生'],
+                //         axisLabel: {
+                //             color: 'white',
+                //             interval: 0
+                //         }
+                //     },
+                //     series: [
+                //         {
+                //             name: 'A类',
+                //             type: 'bar',
+                //             stack: '总量',
+                //             label: {
+                //                 show: false,
+                //                 position: 'insideRight'
+                //             },
+                //             data: [10, 330, 320, 30],
+                //             barWidth: 10
+                //         },
+                //         {
+                //             name: 'B类',
+                //             type: 'bar',
+                //             stack: '总量',
+                //             label: {
+                //                 show: false,
+                //                 position: 'insideRight'
+                //             },
+                //             data: [390, 330, 320, 100],
+                //             barWidth: 10
+                //         },
+                //         {
+                //             name: 'C类',
+                //             type: 'bar',
+                //             stack: '总量',
+                //             label: {
+                //                 show: false,
+                //                 position: 'insideRight'
+                //             },
+                //             data: [390, 330, 320, 60],
+                //             barWidth: 10
+                //         },
+                //         {
+                //             name: '学生类别',
+                //             type: 'pie',
+                //             clockwise: false,
+                //             radius: ['60%', '80%'],
+                //             avoidLabelOverlap: false,
+                //             center: ['10%', '50%'],
+                //             label: {
+                //                 normal: {
+                //                     show: false,
+                //                     position: 'center',
+                //                     fontSize: 20
+                //                 },
+                //                 emphasis: {
+                //                     show: true,
+                //                     textStyle: {
+                //                         fontWeight: 'bold'
+                //                     }
+                //                 }
+                //             },
+                //             labelLine: {
+                //                 normal: {
+                //                     show: true
+                //                 }
+                //             },
+                //             data: [
+                //                 {value: 335, name: 'A类'},
+                //                 {value: 310, name: 'B类'},
+                //                 {value: 234, name: 'C类'},
+                //             ]
+                //         },
+
+                //     ]
+                // };
+                // CBX.setOption(CBXOption);
+
+                let rightBottomData = '';
+                $.ajax({
+                    url: IP + 'overall',
+                    type: 'get',
+                    dataType: 'json',
+                    success(res){
+                        $('.confirmed').html(res.results[0].confirmedCount);
+                        $('.confirmed').parent().siblings('.yestoday').html('较昨日 ↑ ' + res.results[0].confirmedIncr);
+                        $('.cured').html(res.results[0].curedCount);
+                        $('.cured').parent().siblings('.yestoday').html('较昨日 ↑ ' + res.results[0].curedIncr);
+                        $('.suspected').html(res.results[0].suspectedCount);
+                        $('.suspected').parent().siblings('.yestoday').html('较昨日 ↑ ' + res.results[0].suspectedIncr);
+                        $('.dead').html(res.results[0].deadCount);
+                        $('.dead').parent().siblings('.yestoday').html('较昨日 ↑ ' + res.results[0].deadIncr);
+                        setTimeout(()=>{
+                            getRoute();
+                        }, 1000);
+                    }
+                })
+                function getCountryData(stuData){
+                    seriesData = [];
+                    $.ajax({
+                        url: IP + 'area',
+                        type: 'get',
+                        dataType: 'json',
+                        success(res){
+                            let html = ``, stuValue = 0;//全国病例
+                            for(let item of res.results){
+                                if(item.countryName === '中国'&&item.provinceShortName!='中国'){
+                                    stuValue = 0;
+                                    console.log(item);
+                                    for(let stu of stuData){
+                                        if(stu.k.includes(item.provinceShortName)){
+                                            stuValue = stu.v;
+                                            break;
+                                        }
+                                    }
+                                    seriesData.push({
+                                        name: item.provinceShortName,
+                                        value: item.confirmedCount,
+                                        stuValue: stuValue,
+                                        cities: item.cities
+                                    })
+                                    html += `<li>
+                                        <span>${item.provinceShortName}</span>
+                                        <span>${item.confirmedCount}</span>
+                                        <span>${item.deadCount}</span>
+                                        <span>${item.curedCount}</span>
+                                    </li>`;
+                                }
+                            }
+                            //CLASS：.right-bottomlist
+                            rightBottomData = html;
+                            $('.content:first-child .list .detail').html(html);
+                            initMap = true;
+                            initEcharts('china', '中国');
+                        }
+                    })
+                }
+                //获取学院
+                $.ajax({
+                    url: globalIP + 'student/listDistinctFields?filedName=department',
+                    type: 'get',
+                    dataType: 'json',
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
+                        xhr.setRequestHeader('Authorization',localStorage.getItem('screenToken'));
+                    },
+                    contentType: 'application/json',
+                    success: function(res){
+                        if(res.status == '0'){
+                            let html = `<option>全部学院</option>`;
+                            for(let item of res.content){
+                                html += `<option value=${item}>${item}</option>`;
+                            }
+                            $('[name=academy]').html(html);
+                            form.render();
+                        }else{
+                            layer.msg('登录状态过期，请重新登录');
+                            setTimeout(()=>{
+                                location.replace('login.html');
+                            }, 1500);
+                        }
+                        //填充渲染
+                    }
+                });
+                var query = ''//查询字符串
+                form.on('submit(filter-1)', function(data){
+                    $('.load-mode').css('display', 'block');
+                    query = '';
+                    if(data.field.academy !== '全部学院' && data.field !==''){
+                        query += '&department=' + data.field.academy;
+                    }
+                    if(data.field.stuType !== '' &&data.field.stuType !== '全部类型'){
+                        query += '&eduLevel=' + data.field.stuType;
+                    }
+                    if(data.field.type !== '' && data.field.type !== '全部类别'){
+                        query += '&healthLevel=' + data.field.type;
+                    }
+                    if(query !== ''){
+                        query = '?' + query.substring(1);
+                    }
+                    if(mapName == 'china'){
+                        getRoute();
+                    }else{
+                        getProData(provText);
+                    }
+                });
+                //筛选全国学生
+                function getRoute(){
+                    $.ajax({
+                        url: globalIP + 'api/data/listStudentCountByLocation' + query,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(res){
+                            getCountryData(res.content);
+                        }
+                    });
+                }
+                //筛选指定省
+                var provName, provText;
+                function getProData(){
+                    let tempQuery = (query === '')?'': query;
+                    if(tempQuery != ''){
+                        tempQuery = '&' + tempQuery.substring(1);
+                    }
+                    $.ajax({
+                        url: globalIP + 'api/data/listStudentCountByLocation?province=' + provText + tempQuery,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(res){
+                            console.log(res);
+                            dealData(provText, res.content);
+                        }
+                    });
+                };
+                function dealData(name, res){
+                    for(let item of seriesData){
+                        if(name == item.name){
+                            let html = ``;
+                            proveData = [];
+                            for(let city of item.cities){
+                                let stuValue = 0;
+                                for(let stu of res){
+                                    if(stu.k.includes(city.cityName)){
+                                        stuValue = stu.v;
+                                        break;
+                                    }
+                                }
+                                proveData.push({
+                                    name: city.cityName + '市',
+                                    stuValue,
+                                    value: city.confirmedCount
+                                });
+                                html += `<li>
+                                    <span>${city.cityName}</span>
+                                    <span>${city.confirmedCount}</span>
+                                    <span>${city.deadCount}</span>
+                                    <span>${city.curedCount}</span>
+                                </li>`;
+                            }
+                            $('.case').html(name + '病例');
+                            $('.content:first-child .list .detail').html(html);
+                            showProvince(provName, name);
+                            $('.stu-type-data').css('height', '160px');
+                            resize();
+                            break;
+                        }
+                    }
+                }
+                function getLine(){
+                    $.ajax({
+                        url: 'https://bird.ioliu.cn/v1?url=https://view.inews.qq.com/g2/getOnsInfo?name=disease_other',
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(res){
+                            let data = JSON.parse(res.data);
+                            let date = [], confirm = [], suspected = [], dead = [], heal = [];
+                            for(let i = data.chinaDayAddList.length - 1; i > data.chinaDayAddList.length-10; i--){
+                                date.push(data.chinaDayAddList[i].date);
+                                confirm.push(data.chinaDayAddList[i].confirm);
+                                suspected.push(data.chinaDayAddList[i].suspect);
+                                dead.push(data.chinaDayAddList[i].dead);
+                                heal.push(data.chinaDayAddList[i].heal);
+                            }
+                            initRTC(date, confirm, suspected, dead, heal);
+                        }
+                    });
+                }
+                getLine();
+                var provinces = ['shanghai', 'hebei', 'shanxi', 'neimenggu', 'liaoning', 'jilin', 'heilongjiang', 'jiangsu', 'zhejiang', 'anhui', 'fujian', 'jiangxi', 'shandong', 'henan', 'hubei', 'hunan', 'guangdong', 'guangxi', 'hainan', 'sichuan', 'guizhou', 'yunnan', 'xizang', 'shanxi1', 'gansu', 'qinghai', 'ningxia', 'xinjiang', 'beijing', 'tianjin', 'chongqing', 'xianggang', 'aomen', 'taiwan'];
+                var provincesText = ['上海', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东省', '河南', '湖北', '湖南', '广东', '广西', '海南', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆', '北京', '天津', '重庆', '香港', '澳门', '台湾'];
+
+                let myChart = echarts.init(document.getElementById('china'));
+                let studentState = true;//是否显示学生数据
+                initEcharts("china", "中国");
+                $('.fa-undo').click(function(){
+                    mapName = 'china';
+                    initEcharts("china", "中国");
+                    $(this).hide();
+                    $('.stu-type-data').css('height', '0');
+                    resize();
+                    $('.case').html('中国病例');
+                    $('.content:first-child .list .detail').html(rightBottomData);
+                });
+                // 初始化echarts
+                function initEcharts(pName, Chinese_) {
+                    var tmpSeriesData = pName === "china" ? seriesData : proveData;
+                    let zoom = pName === 'china'? 1.1: 0.8;
+                    let bottom = pName === 'china'? 200: 100;
+                    let left = '10%';
+                    let top = '10%';
+                    if(pName !== 'china'){
+                        top = '20%';
+                        left = '15%';
+                    }
+                    var option = {
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '已确诊 {b}<br/>{c} 人'
+                        },
+                        visualMap: {
+                            type: 'piecewise',
+                            right:10,
+                            bottom:bottom,
+                            pieces: [
+                                {min: 10000},
+                                {min: 1000, max: 9999},
+                                {min: 500, max: 999},
+                                {min: 200, max: 499},
+                                {min: 100, max: 199},
+                                {min: 10, max: 99},
+                                {min: 1, max: 9},
+                                {max: 0, min: 0}
+                            ],
+                            min: 0,
+                            max: 3000,
+                            inRange: {
+                                color: ['#29B0CB','#FFFDD7','#FCF467','#FCC030','#F39E18', '#FF1F00']
+                            },
+                            orient: 'verticle',
+                            textStyle:{
+                                color:'#eee',
+                                fontSize:14
+                            }
+                        },
+                        series: [
+                        {
+                            name: Chinese_ || pName,
+                            type: 'map',
+                            map: pName,
+                            roam: false,//是否开启鼠标缩放和平移漫游
+                            data: tmpSeriesData,
+                            top: top,//组件距离容器的距离
+                            left: left,
+                            zoom: zoom,
+                            selectedMode : 'single',//是否允许多选
+                            label: {
+                                normal: {
+                                    show: true,//显示省份标签
+                                    textStyle:{
+                                        color:"#000"
+                                    },//省份标签字体颜色
+                                    formatter: function(param){
+                                        if(studentState&&param.data.stuValue){
+                                            return '{a|'+ param.data.stuValue +'人}';
+                                        }else{
+                                            return '{b|'+ param.name +'}';
+                                        }
+                                    },
+                                    rich:{
+                                        a: {
+                                            color: 'white',
+                                            backgroundColor: 'rgb(51, 51, 51)',
+                                            padding: [5, 10],
+                                            borderRadius: 5
+                                        },
+                                        b:{}
+                                    }
+                                },
+                                emphasis: {//对应的鼠标悬浮效果
+                                    show: true,
+                                    textStyle:{color:"#323232"}
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    borderWidth: .5,//区域边框宽度
+                                    borderColor: '#0550c3',//区域边框颜色
+                                    areaColor:"#bfbfbf",//区域颜色
+                                },
+                                emphasis: {
+                                    borderWidth: .5,
+                                    borderColor: '#4b0082',
+                                    areaColor:"#ece39e",
+                                }
+                            },
+                        }
+                        ]
+                    };
+                    $('.load-mode').css('display', 'none');
+                    myChart.setOption(option);
+                    myChart.off("click");
+                    if (pName === "china") {
+                        myChart.on('click', function (param) {
+                            for (var i = 0; i < provincesText.length; i++) {
+                                if (provincesText[i].includes(param.name)&&initMap) {
+                                    let stuTypeData = provType[param.name];
+                                    if(stuTypeData){
+                                        $('.bottom-A').html(stuTypeData['A'] + '人');
+                                        $('.bottom-B').html(stuTypeData['B'] + '人');
+                                        $('.bottom-C').html(stuTypeData['C'] + '人');
+                                    }else{
+                                        $('.bottom-A').html('0人');
+                                        $('.bottom-B').html('0人');
+                                        $('.bottom-C').html('0人');
+                                    }
+                                    provName = provinces[i];
+                                    console.log(param);
+                                    provText = param.name;
+                                    getProData();
+                                    break;
+                                }
+                            }
+                            // if (param.componentType === 'series') {
+                            //     var provinceName =param.name;
+                            // }
+                        });
+                    }
+                }
+
+                // 展示对应的省
+                function showProvince(pName, Chinese_) {
+                    loadBdScript('$' + pName + 'JS', './js/map/p/province/' + pName + '.js', function () {
+                        $('.fa-undo').css('display','block');
+                        mapName = Chinese_;
+                        initEcharts(mapName);
+                    });
+                }
+                //地图中的筛选
+                $('.hide-detail').click(function(){
+                    let state = $(this).find('.fa').attr('class').includes('check');
+                    if(state){
+                        //显示学生数据
+                        studentState = true;
+                        $(this).find('.fa').removeClass('fa-check-square-o')
+                            .addClass('fa-square-o');
+                    }else{
+                        //隐藏学生数据
+                        studentState = false;
+                        $(this).find('.fa').removeClass('fa-square-o')
+                            .addClass('fa-check-square-o');
+                    }
+                    if(mapName === 'china'){
+                        initEcharts('china', '中国');
+                    }else{
+                        initEcharts(mapName);
+                    }
+                });
+                //地图左上角的筛选
+
+                // 加载对应的JS
+                function loadBdScript(scriptId, url, callback) {
+                    var script = document.createElement("script");
+                    script.type = "text/javascript";
+                    if (script.readyState) {  //IE
+                        script.onreadystatechange = function () {
+                            if (script.readyState === "loaded" || script.readyState === "complete") {
+                                script.onreadystatechange = null;
+                                callback();
+                            }
+                        };
+                    } else {  // Others
+                        script.onload = function () {
+                            callback();
+                        };
+                    }
+                    script.src = url;
+                    script.id = scriptId;
+                    document.getElementsByTagName("head")[0].appendChild(script);
+                };
+                //ID：#right-top-chart
+                let RTC = echarts.init(document.getElementById('right-top-chart'));
+                function initRTC(date, confirm, suspected, dead, heal){
+                    RTCOption = {
+                        tooltip : {
+                            trigger: 'axis',
+                            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        grid: {
+                            top: '10%',
+                            left: '0%',
+                            right: '0%',
+                            bottom: '2%',
+                            containLabel: true,
+                        },
+                        color: ['#25A0FF', '#E7CC21','#E56B59'],
+                        legend: {
+                            icon: 'rect',
+                            itemGap: 20,
+                            itemWidth: 10,
+                            itemHeight: 10,
+                            data: ['确诊' ,'疑似', '死亡'],
+                            textStyle: {
+                                color: '#f9f9f9',
+                                borderColor: '#fff',
+                            }
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            boundaryGap: true,
+                            axisLine: { //坐标轴轴线相关设置。数学上的x轴
+                                show: true,
+                                lineStyle: {
+                                    color: '#f9f9f9'
+                                },
+                            },
+                            axisLabel: { //坐标轴刻度标签的相关设置
+                                textStyle: {
+                                    color: '#d1e6eb',
+                                    margin: 5,
+                                },
+                                interval: 0,
+                            },
+                            inverse: true,
+                            axisTick: {
+                                show: false,
+                            },
+                            data: date,
+                        }],
+                        yAxis: [{
+                            type: 'value',
+                            min: 0,
+                            max: 300,
+                            splitNumber: 10,
+                            splitLine: {
+                                show: false
+                            },
+                            axisLabel: {
+                                margin: 5,
+                                // interval: 0,
+                                textStyle: {
+                                    color: '#d1e6eb',
+                                },
+                            },
+                        }],
+                        series: [
+                            {
+                                name: '确诊',
+                                type: 'line',
+                                // smooth: true, //是否平滑曲线显示
+                                // symbol:'circle',  // 默认是空心圆（中间是白色的），改成实心圆
+                                showAllSymbol: true,
+                                symbolSize: 6,
+                                areaStyle: { //区域填充样式
+                                    normal: {
+                                        //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                offset: 0,
+                                                color: 'rgba(0,154,120,1)'
+                                            },
+                                            {
+                                                offset: 1,
+                                                color: 'rgba(0,0,0, 0)'
+                                            }
+                                        ], false),
+                                        shadowColor: 'rgba(53,142,215, 0.9)', //阴影颜色
+                                        shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+                                    }
+                                },
+                                data: confirm
+                            },
+                            {
+                                name: '疑似',
+                                type: 'line',
+                                symbolSize: 6,
+                                data: suspected
+                            },
+                            // {
+                            //     name: '治愈',
+                            //     type: 'line',
+                            //     symbolSize: 6,
+                            //     data: heal
+                            // },
+                            {
+                                name: '死亡',
+                                type: 'line',
+                                symbolSize: 6,
+                                data: dead
+                            }
+                        ]
+                    };
+                    RTC.setOption(RTCOption);
+                }
+
+                //第二屏
+                //迁出图
+                var move = echarts.init(document.getElementById('move'));
+                var geoCoordMap = {
+    阿克苏: [80.260604, 41.168779],
+    和田: [79.922211, 37.114157],
+    上海: [121.480237, 31.236305],
+    东莞: [113.758231, 23.026997],
+    东营: [118.588614, 37.454925],
+    中山: [113.399023, 22.522262],
+    临汾: [111.526153, 36.094052],
+    临沂: [118.36299, 35.110531],
+    丹东: [124.362564, 40.00569],
+    丽水: [119.929503, 28.472979],
+    乌鲁木齐: [87.623314, 43.832806],
+    佛山: [113.128432, 23.027707],
+    保定: [115.471052, 38.880055],
+    兰州: [103.840692, 36.067312],
+    包头: [109.846755, 40.663636],
+    北京: [116.413554, 39.911013],
+    北海: [109.126614, 21.486955],
+    南京: [118.802891, 32.064735],
+    南宁: [108.373351, 22.823037],
+    南昌: [115.864528, 28.687675],
+    南通: [120.900301, 31.985237],
+    厦门: [118.095915, 24.485821],
+    台州: [121.426996, 28.662297],
+    合肥: [117.235447, 31.82687],
+    呼和浩特: [111.758518, 40.847461],
+    咸阳: [108.715712, 34.335599],
+    哈尔滨: [126.542417, 45.807782],
+    唐山: [118.187036, 39.636673],
+    嘉兴: [120.762045, 30.750912],
+    大同: [113.306446, 40.082539],
+    大连: [121.621391, 38.919345],
+    天津: [117.205914, 39.090908],
+    太原: [112.55706, 37.876885],
+    威海: [122.128245, 37.519322],
+    宁波: [121.556686, 29.880177],
+    宝鸡: [107.243899, 34.367747],
+    宿迁: [118.282062, 33.967686],
+    常州: [119.980142, 31.816791],
+    广州: [113.270793, 23.135308],
+    廊坊: [116.69034, 39.54352],
+    延安: [109.496361, 36.591003],
+    张家口: [114.894165, 40.830172],
+    徐州: [117.29235, 34.210143],
+    德州: [116.365825, 37.441313],
+    惠州: [114.423348, 23.116409],
+    成都: [104.071216, 30.576279],
+    扬州: [119.419107, 32.39986],
+    承德: [117.969798, 40.957855],
+    拉萨: [91.121025, 29.650088],
+    无锡: [120.318954, 31.496704],
+    日照: [119.533606, 35.422798],
+    昆明: [102.839667, 24.885953],
+    杭州: [120.161693, 30.280059],
+    枣庄: [117.328513, 34.816569],
+    柳州: [109.42198, 24.331519],
+    株洲: [113.140431, 27.833737],
+    武汉: [114.311831, 30.598428],
+    汕头: [116.688739, 23.359289],
+    江门: [113.088165, 22.584459],
+    沈阳: [123.438973, 41.811339],
+    沧州: [116.845272, 38.31022],
+    河源: [114.707097, 23.749829],
+    泉州: [118.682316, 24.880242],
+    泰安: [117.094893, 36.205905],
+    泰州: [119.932115, 32.4612],
+    济南: [117.001319, 36.671627],
+    济宁: [116.593852, 35.420269],
+    海口: [110.206424, 20.050057],
+    淄博: [118.061254, 36.819182],
+    淮安: [119.022429, 33.616272],
+    深圳: [114.066112, 22.548515],
+    清远: [113.062619, 23.688238],
+    温州: [120.705869, 28.001095],
+    渭南: [109.516739, 34.505687],
+    湖州: [120.094566, 30.899015],
+    湘潭: [112.950575, 27.83585],
+    滨州: [117.9792, 37.388387],
+    潍坊: [119.168138, 36.713212],
+    烟台: [121.454425, 37.469868],
+    玉溪: [102.5537, 24.357512],
+    珠海: [113.583235, 22.276392],
+    盐城: [120.168187, 33.355301],
+    盘锦: [122.077269, 41.125939],
+    石家庄: [114.520828, 38.048684],
+    福州: [119.302938, 26.080447],
+    秦皇岛: [119.606184, 39.941259],
+    绍兴: [120.586673, 30.036519],
+    聊城: [115.992077, 36.462681],
+    肇庆: [112.47177, 23.052984],
+    舟山: [122.214339, 29.991092],
+    苏州: [120.589613, 31.304566],
+    莱芜: [117.683221, 36.219357],
+    菏泽: [115.487696, 35.239435],
+    营口: [122.241475, 40.672565],
+    葫芦岛: [120.843388, 40.717364],
+    衡水: [115.676942, 37.745166],
+    衢州: [118.880768, 28.941661],
+    西宁: [101.784269, 36.623477],
+    西安: [108.946306, 34.347436],
+    贵阳: [106.636816, 26.652747],
+    连云港: [119.229571, 34.602342],
+    邢台: [114.510889, 37.076646],
+    邯郸: [114.545808, 36.631222],
+    郑州: [113.631349, 34.753488],
+    鄂尔多斯: [109.787314, 39.61463],
+    重庆: [106.557165, 29.570997],
+    金华: [119.654027, 29.084455],
+    铜川: [108.951558, 34.902957],
+    银川: [106.238976, 38.492392],
+    镇江: [119.431494, 32.195688],
+    长春: [125.33017, 43.82178],
+    长沙: [112.945333, 28.233971],
+    长治: [113.123046, 36.201585],
+    阳泉: [113.587087, 37.86234],
+    青岛: [120.389445, 36.072358],
+    韶关: [113.603757, 24.816174],
+    九江: [116.007993, 29.711328],
+    大庆: [125.109727, 46.593216],
+    宁德: [119.554701, 26.671748],
+    忻州: [112.740804, 38.422382],
+    石嘴山: [106.39078, 38.989783],
+    池州: [117.497839, 30.67098],
+    淮南: [117.006189, 32.631837],
+    吐鲁番: [89.196029, 42.957303],
+    宜昌: [111.292971, 30.697602],
+    景德镇: [117.184967, 29.274337],
+    安庆: [117.070127, 30.548594],
+    怒江: [98.863189, 25.823736],
+    白城: [122.845302, 45.6254],
+    萍乡: [113.86077, 27.62897],
+    抚州: [116.364627, 27.953603],
+    朝阳: [120.457301, 41.579487],
+    海东: [102.003965, 36.406412],
+    湘西: [109.745507, 28.317399],
+    鹰潭: [117.075765, 28.265879],
+    阿拉善: [105.735357, 38.857806],
+    大阪府: [0, 0],
+    鹤岗: [130.304284, 47.356043],
+    吴忠: [106.205161, 38.003863],
+    石河子: [86.085507, 44.312423],
+    开封: [114.313904, 34.802941],
+    延边: [129.515602, 42.897211],
+    白银: [104.144182, 36.550821],
+    吕梁: [111.148086, 37.525476],
+    随州: [113.389071, 31.696341],
+    雅安: [103.04636, 30.021277],
+    平顶山: [113.198935, 33.772051],
+    阜新: [121.676518, 42.027983],
+    普洱: [100.98114, 22.788486],
+    三亚: [109.518646, 18.258217],
+    赣州: [114.94126, 25.837179],
+    广元: [105.849993, 32.441808],
+    锦州: [121.133631, 41.100869],
+    南充: [106.117231, 30.843297],
+    衡阳: [112.578397, 26.899517],
+    齐齐哈尔: [123.924531, 47.360087],
+    兴安盟: [122.044544, 46.088444],
+    乌海: [106.80185, 39.660154],
+    楚雄: [101.534082, 25.051226],
+    伊春: [128.84704, 47.733329],
+    陇南: [104.928233, 33.406825],
+    荆门: [112.205843, 31.041792],
+    辽源: [125.150107, 42.8943],
+    怀化: [110.008116, 27.575595],
+    牡丹江: [129.638976, 44.558647],
+    黄南: [102.021495, 35.526125],
+    湛江: [110.365494, 21.277163],
+    天水: [105.731276, 34.587162],
+    黔东南: [107.990602, 26.589858],
+    云浮: [112.051045, 22.921154],
+    安康: [109.03592, 32.690575],
+    日喀则: [88.956063, 29.26816],
+    海北: [100.907395, 36.960702],
+    海西: [97.377823, 37.382839],
+    吉安: [115.00027, 27.119751],
+    黄石: [115.045433, 30.205336],
+    宿州: [116.970454, 33.652034],
+    茂名: [110.931773, 21.669051],
+    阳江: [111.989051, 21.864421],
+    信阳: [114.099264, 32.153186],
+    三门峡: [111.206832, 34.778442],
+    咸宁: [114.328967, 29.847123],
+    许昌: [113.858804, 34.041737],
+    保山: [99.168373, 25.117882],
+    鹤壁: [114.304044, 35.752656],
+    运城: [111.013379, 35.032587],
+    达州: [107.474504, 31.214347],
+    常德: [111.704994, 29.037723],
+    酒泉: [98.500427, 39.738615],
+    马鞍山: [118.512691, 31.67633],
+    南阳: [112.535009, 32.996701],
+    邵阳: [111.474133, 27.245167],
+    黔南: [107.528663, 26.260586],
+    孝感: [113.922962, 30.930712],
+    安顺: [105.952622, 26.259904],
+    辽阳: [123.243726, 41.274452],
+    黔西南: [104.910858, 25.095974],
+    克拉玛依: [84.89587, 45.585765],
+    庆阳: [107.649305, 35.716096],
+    呼伦贝尔: [119.77221, 49.217977],
+    六盘水: [104.836786, 26.599086],
+    新余: [114.923664, 27.823541],
+    七台河: [131.009618, 45.776512],
+    商丘: [115.662798, 34.420378],
+    漯河: [114.02323, 33.587703],
+    乌兰察布: [113.140223, 40.999972],
+    潜江: [112.905773, 30.407633],
+    定西: [104.631662, 35.587354],
+    鸡西: [130.976161, 45.300906],
+    汕尾: [115.381693, 22.791322],
+    四平: [124.356844, 43.172447],
+    西双版纳: [100.803836, 22.013792],
+    遂宁: [105.599152, 30.539156],
+    商洛: [109.94688, 33.876525],
+    海南: [100.626831, 36.292132],
+    文山: [104.221606, 23.404187],
+    六安: [116.529651, 31.741226],
+    张家界: [110.484925, 29.122477],
+    潮州: [116.62943, 23.662923],
+    蚌埠: [117.395835, 32.921498],
+    桂林: [110.296442, 25.279893],
+    甘南: [102.917605, 34.98901],
+    驻马店: [114.029465, 33.017546],
+    林芝地区: [94.368109, 29.654792],
+    百色: [106.624969, 23.907845],
+    鞍山: [123.000974, 41.114122],
+    郴州: [113.021311, 25.776711],
+    巴中: [106.753912, 31.872851],
+    恩施: [109.494763, 30.277908],
+    十堰: [110.80454, 32.635042],
+    临沧: [100.10566, 23.914336],
+    泸州: [105.449092, 28.877577],
+    平凉: [106.671741, 35.549266],
+    宣城: [118.765196, 30.946576],
+    绵阳: [104.686164, 31.473364],
+    佳木斯: [130.32696, 46.806581],
+    遵义: [106.933658, 27.731749],
+    钦州: [108.66089, 21.985392],
+    玉树: [97.01308, 33.011061],
+    本溪: [123.773468, 41.299847],
+    朔州: [112.438184, 39.33789],
+    毕节: [105.333323, 27.408562],
+    张掖: [100.456221, 38.932187],
+    南平: [118.1843, 26.647662],
+    濮阳: [115.035917, 35.767586],
+    宜宾: [104.648103, 28.75761],
+    铜仁: [109.168558, 27.674903],
+    松原: [124.831633, 45.147201],
+    漳州: [117.653827, 24.519197],
+    梧州: [111.285647, 23.482873],
+    洛阳: [112.460033, 34.624376],
+    龙岩: [117.023668, 25.081257],
+    莆田: [119.014232, 25.45996],
+    济源: [112.609314, 35.072867],
+    哈密: [93.522785, 42.824642],
+    昭通: [103.723311, 27.344057],
+    大理: [100.274223, 25.612206],
+    昌吉: [87.314822, 44.016923],
+    迪庆: [99.70948, 27.825264],
+    黑河: [127.535014, 50.251193],
+    吉林: [126.556073, 43.843512],
+    广安: [106.639772, 30.461708],
+    黄山: [118.174807, 30.133213],
+    德阳: [104.404319, 31.133105],
+    河池: [108.091898, 24.698828],
+    益阳: [112.361677, 28.559818],
+    通化: [125.946506, 41.733906],
+    永州: [111.618703, 26.426612],
+    周口: [114.703433, 33.631958],
+    梅州: [116.129179, 24.294311],
+    锡林郭勒: [116.054141, 43.939525],
+    固原: [106.24917, 36.021609],
+    滁州: [118.323252, 32.308165],
+    荆州: [112.24722, 30.340606],
+    芜湖: [118.439561, 31.358798],
+    襄阳: [112.250093, 32.229169],
+    吉隆坡: [0, 0],
+    榆林: [109.741195, 38.290886],
+    果洛: [100.251341, 34.477207],
+    玉林: [110.18743, 22.660656],
+    临夏: [103.217303, 35.607475],
+    鄂州: [114.901557, 30.396522],
+    晋中: [112.759375, 37.692757],
+    巴音郭楞: [86.151584, 41.770226],
+    澳门: [113.549403, 22.192961],
+    内江: [105.065028, 29.585836],
+    揭阳: [116.37922, 23.555773],
+    通辽: [122.251207, 43.658363],
+    阜阳: [115.821389, 32.895879],
+    中卫: [105.203332, 37.506058],
+    铜陵: [117.818795, 30.950899],
+    红河: [103.38215, 23.369914],
+    曲靖: [103.802685, 25.496328],
+    香港: [114.171994, 22.281089],
+    汉中: [107.030197, 33.07382],
+    乐山: [103.77193, 29.558141],
+    新乡: [113.933349, 35.308973],
+    晋城: [112.857706, 35.496081],
+    巴彦淖尔: [107.394129, 40.749427],
+    武威: [102.644524, 37.934078],
+    岳阳: [113.135679, 29.363262],
+    赤峰: [118.895463, 42.264586],
+    白山: [126.431052, 41.94643],
+    攀枝花: [101.725262, 26.588109],
+    黄冈: [114.878872, 30.459422],
+    绥化: [126.975678, 46.658789],
+    双鸭山: [131.165442, 46.652966],
+    凉山: [102.273965, 27.887685],
+    伊犁: [81.330697, 43.922815],
+    德宏: [98.591419, 24.438031],
+    安阳: [114.3996, 36.103649],
+    三明: [117.645742, 26.269683],
+    宜春: [114.422683, 27.820089],
+    上饶: [117.950028, 28.460864],
+    自贡: [104.784891, 29.345379],
+    娄底: [112.001082, 27.703196],
+    丽江: [100.23357, 26.862521],
+    防城港: [108.361138, 21.693439],
+    淮北: [116.804878, 33.96064],
+    儋州: [109.587145, 19.527081],
+    怒江州: [98.863189, 25.823736],
+    焦作: [113.248557, 35.221493],
+    铁岭: [123.848797, 42.292573],
+    抚顺: [123.963595, 41.886078],
+    巢湖: [117.88049, 31.608733],
+    西双版纳: [100.803836, 22.013792],
+    德宏州: [98.591419, 24.438031],
+    恩施: [109.485727, 30.30089],
+    湘西州: [109.745507, 28.317399],
+    西昌: [102.269526, 27.900601],
+    阿坝州: [102.231186, 31.905609],
+    黔南州: [107.528663, 26.260586],
+    黔东南州: [107.990602, 26.589858],
+    黔西南州: [104.910858, 25.095974],
+    大理州: [100.274223, 25.612206],
+    红河州: [103.38215, 23.369914],
+    文山州: [104.221606, 23.404187],
+    楚雄州: [101.534082, 25.051226],
+    迪庆州: [99.70948, 27.825264],
+    山南: [91.779601, 29.24309],
+    那曲: [92.0578, 31.482375],
+    博尔塔拉: [82.073064, 44.912168],
+    临夏州: [103.217303, 35.607475],
+    甘南州: [102.917605, 34.98901],
+    格尔木: [94.909745, 36.408588],
+    奎屯: [84.90832, 44.432645],
+    亳州: [115.7786, 33.8445],
+    崇左: [107.3647, 22.3765],
+    定安县: [110.3588, 19.6814],
+    东方: [108.6518, 19.0953],
+    贵港: [109.5989, 23.1115],
+    贺州: [111.5666, 24.4035],
+    嘉峪关: [98.2891, 39.7731],
+    金昌: [102.1880, 38.5200],
+    来宾: [109.2214, 23.7503],
+    乐东: [109.1730, 18.7502],
+    陵水: [110.0375, 18.5060],
+    眉山: [103.8485, 30.0754],
+    琼海: [110.4921, 19.2396],
+    台湾: [120.9605, 23.6978],
+    天门: [113.3169, 30.8657],
+    屯昌县: [110.1034, 19.3517],
+    万宁: [110.3816, 18.8078],
+    文昌: [113.8259, 25.8228],
+    五指山: [109.5169, 18.7751],
+    仙桃: [113.4234, 30.3608],
+    资阳: [104.6520, 30.1246],
+    安徽: [117.17, 31.52],
+    福建: [119.18, 26.05],
+    甘肃: [103.51, 36.04],
+    广东: [113.14, 23.08],
+    广西: [108.19, 22.48],
+    贵州: [106.42, 26.35],
+    海南: [110.20, 20.02],
+    河北: [114.30, 38.02],
+    河南: [113.40, 34.46],
+    黑龙江: [126.36, 45.44],
+    湖北: [114.17, 30.35],
+    湖南: [112.59, 28.12],
+    江苏: [118.46, 32.03],
+    江西: [115.55, 28.40],
+    辽宁: [123.25, 41.48],
+    内蒙古: [111.41, 40.48],
+    宁夏: [106.16, 38.27],
+    青海: [101.48, 36.38],
+    山东: [117.00, 36.40],
+    山西: [112.33, 37.54],
+    陕西: [108.57, 34.17],
+    四川: [104.04, 30.40],
+    西藏: [91.08, 29.39],
+    新疆: [87.36, 43.45],
+    云南: [102.42, 25.04],
+    浙江: [120.10, 30.16],
+};
+                //全国迁移图
+                var QDData = [];
+                //山东迁移图
+                let SDData = []
+
+                var convertData = function (data) {
+                    var res = [];
+                    for (var i = 0; i < data.length; i++) {
+
+                        var dataItem = data[i];
+
+                        var fromCoord = geoCoordMap[dataItem[0].name];
+                        var toCoord = geoCoordMap[dataItem[1].name];
+                        if (fromCoord && toCoord) {
+                            res.push({
+                                fromName: dataItem[0].name,
+                                toName: dataItem[1].name,
+                                coords: [fromCoord, toCoord],
+                                value: dataItem[1].value
+                            });
+                        }
+                    }
+                    return res;
+
+                };
+
+                let type = 'china';//china/山东
+                //筛选路线
+                var routeQuery = ''
+                form.on('submit(filter-2)', function(data){
+                    routeQuery = '';
+                    if(data.field.academy !== '' && data.field.academy !=='全部学院'){
+                        routeQuery += '&department=' + data.field.academy;
+                    }
+                    if(data.field.stuType !== '' && data.field.stuType !== '全部类型'){
+                        routeQuery += '&eduLevel=' + data.field.stuType;
+                    }
+                    if(data.field.type !== '' && data.field.type !== '全部类别'){
+                        routeQuery += '&healthLevel=' + data.field.type;
+                    }
+                    getMoveData();
+                });
+                function getMoveData(){
+                    let url = 'api/data/listStudentCountByLocation';
+                    if(type === 'china'){
+                        url += '?isCity=true' + routeQuery;
+                    }else{
+                        url += '?province=山东' + routeQuery;
+                    }
+                    $.ajax({
+                        url: globalIP + url,
+                        type: 'get',
+                        success: function(res){
+                            if(type == 'china'){
+                                QDData = [];
+                                for(let item of res.content){
+                                    QDData.push([{name: item.k},{name: '青岛', value: item.v}]);
+                                }
+                            }else{
+                                SDData = [];
+                                for(let item of res.content){
+                                    SDData.push([{name: item.k},{name: '青岛', value: item.v}]);
+                                }
+                            }
+                            getMoveInfo(type);
+                        }
+                    });
+                }
+                getMoveData();
+                function getMoveInfo(type){
+                    var series = [];
+                    let data = type === 'china'? QDData: SDData;
+                    [['青岛', data]].forEach(function (item, i) {
+                        let data = convertData(item[1]);
+                        series.push({
+                            name: item[0] + ' Top3',
+                            type: 'lines',
+                            zlevel: 1,
+                            effect : {
+                                show: true,
+                                scaleSize: 2,
+                                period: 5,
+                                color: '#fff',
+                                shadowBlur: 10,
+                                trailLength: 0.1
+                            },
+                            lineStyle: {
+                                normal: {
+                                    borderWidth:1,
+                                    type: 'solid',
+                                    shadowColor: '#fff',
+                                    opacity: 0.3,
+                                    curveness: 0.2
+                                }
+                            },
+                            data: data
+                        },
+                        {
+                            name: item[0] + ' Top10',
+                            type: 'effectScatter',
+                            coordinateSystem: 'geo',
+                            zlevel: 2,
+                            rippleEffect: {
+                                brushType: 'stroke'
+                            },
+                            label: {
+                                normal: {
+                                    show: false,
+                                    position: 'right',
+                                    formatter: '{b}'
+                                }
+                            },
+                            symbolSize: 20,
+                            data: item[1].map(function (dataItem) {
+                                return {
+                                    name: dataItem[1].name,
+                                    value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+                                };
+                            })
+                        });
+                    });
+                    var option = {
+                        tooltip : {
+                            trigger: 'none',
+                            formatter:function(params, ticket, callback){
+                                if(params.seriesType=="effectScatter") {
+                                    return "线路："+params.data.name+""+params.data.value[2];
+                                }else if(params.seriesType=="lines"){
+                                    return params.data.fromName+">"+params.data.toName+"<br />"+params.data.value;
+                                }else{
+                                    return params.name;
+                                }
+                            }
+                        },
+                        dataRange: {//markline/markPoint的颜色设置
+                            show: true,
+                            max : 1000,
+                            min : 0,
+                            calculable : true,
+                            color: ['#FD8492', '#9600FF', '#FF00FF', '#FFD900', '#A2FEA7', '#3BE2FF', '#25A0FF'],
+                            textStyle:{
+                                color:'#fff'
+                            }
+                        },
+                        geo: {
+                            map: type,
+                            label: {
+                                emphasis: {
+                                    show: true,
+                                    color:'#fff'
+                                }
+                            },
+                            roam: false,
+                            zoom: 1.1,
+                            itemStyle: {
+                                normal: {
+                                    areaColor: 'rgb(9, 87, 101)',
+                                    borderColor: 'rgb(45, 118, 156)',
+                                    borderWidth: 1,
+                                },
+                                emphasis: {
+                                    show: false,
+                                    areaColor: '#2B91B7'
+                                }
+                            }
+                        },
+                        series: series
+                    };
+                    move.clear();
+                    move.setOption(option);
+                }
+                $('#move').on('mousewheel DOMMouseScroll', function(e){
+                    var wheel = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+                    var delta = Math.max(-1, Math.min(1, wheel) );
+                    if(delta<0){//向下滚动
+                        if(type == '山东'){
+                            type = 'china'
+                            getMoveData();
+                        }
+                    }else{//向上滚动
+                        if(type == 'china'){
+                            type = '山东'
+                            getMoveData();
+                        }
+                    }
+                });
+
+                //ID：station
+                //#ID：center-bottom
+                function initStation(type){
+                    let stations = Object.keys(campusStationData[type]);
+                    let values = Object.values(campusStationData[type]);
+                    let series = [];
+                    series.push({
+                        name:  '接站人数',
+                        type: 'bar',
+                        label: {
+                            show: false,
+                            position: 'insideRight'
+                        },
+                        data: values,
+                        barWidth: 10
+                    });
+                    let stationOption = {
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a} <br/>{b}: {c} '
+                        },
+                        legend: {
+                            show: false,
+                            type: 'plain',
+                            data: [],
+                            textStyle: {
+                                color: 'white'
+                            },
+                            left: '5%',
+                            right: '5%',
+                            itemGap: 15,
+                            itemWidth: 8,
+                            itemHeight: 8
+                        },
+                        color: color,
+                        grid: [//定义柱状图位置，因为是第一个
+                            {
+                                top: '5%',
+                                left: '2%',
+                                right: '2%',
+                                bottom: '5%',
+                                containLabel: true
+                            }
+                        ],
+                        xAxis: {
+                            show: false,
+                            type: 'value',
+                            axisLabel: {
+                                color: 'white'
+                            },
+                            splitLine: {
+                                show: false
+                            }
+                        },
+                        yAxis: {
+                            type: 'category',
+                            data: stations,
+                            axisLabel: {
+                                color: 'white'
+                            }
+                        },
+                        series: series
+                    };
+                    station.setOption(stationOption);
+                }
+
+                $('.rate-box .mode').click(function(){
+                    $('.content:nth-child(2)').css('filter', 'unset');
+                    $(this).parent().hide();
+                });
+                $('.content:nth-child(2) .center-top .rate-detail').click(function(){
+                    $('.content:nth-child(2)').css('filter', 'blur(5px)');
+                    $('.rate-box').show();
+                });
+                $('header .to-right').click(function(){
+                    $('.content:nth-child(1)').css('left', '-100%');
+                    $('.content:nth-child(2)').css('left', '0');
+                });
+                $('header .to-left').click(function(){
+                    $('.content:nth-child(1)').css('left', '0');
+                    $('.content:nth-child(2)').css('left', '100%');
+                });
+                function resize(){
+                    myChart.resize();
+                    LBC.resize();
+                    RTC.resize();
+                    // CBX.resize();
+                    LCC2.resize();
+                    move.resize();
+                    station.resize();
+                }
+                window.addEventListener('resize', resize, false);
+            });
+        }
+    </script>
+</body>
+</html>

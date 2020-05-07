@@ -1,0 +1,180 @@
+/**
+除登录页面外，大屏布局
+body高度为100%
+溢出省略
+一个页面四类数据表页
+动效切换
+ ________________________________________________________________________
+|_________________________________header_________________________________|
+|        |                 |        ||        |                 |        |
+|  left  |     center      |  right ||  left  |     center      |  right |
+|        |                 |        ||        |                 |        |
+|________|_________________|________||________|_________________|________|
+*/
+html {
+  font-size: 16px;
+}
+body,
+html {
+  height: 100%;
+  max-height: 100%;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  list-style: none;
+  white-space: nowrap;
+}
+*::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+}
+*::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background: #00fff6;
+}
+*::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  border-radius: 10px;
+  background: black;
+}
+body {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../img/datas.jpg');
+  background-size: 100% 100%;
+}
+body .chart-item {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 15px;
+  border: 1px solid #00fff6;
+  border-radius: 3px;
+}
+body .chart-title {
+  margin-bottom: 15px;
+  color: #00fff6;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0 0 10px #00fff6;
+}
+body .chart-title .issure-number {
+  float: right;
+  color: #FCC030;
+}
+body .line {
+  border-bottom: 1px solid #026784;
+  margin: 10px 0;
+}
+body .chart {
+  flex-grow: 1;
+}
+body header {
+  display: flex;
+  justify-content: space-between;
+  color: #00fff6;
+  line-height: 3rem;
+  text-shadow: 3px 3px 50px #00fff6;
+}
+body header .header-left,
+body header .header-right {
+  position: absolute;
+  display: flex;
+  line-height: 60px;
+  align-items: center;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+}
+body header .header-left img,
+body header .header-right img {
+  margin: 0 30px;
+}
+body header > .header-left {
+  left: 20px;
+}
+body header > .header-left .campus-select {
+  color: #00b3ac;
+  position: relative;
+  cursor: pointer;
+}
+body header > .header-left .campus-select img {
+  margin: 0 10px;
+}
+body header > .header-left .campus-select ul {
+  background-color: #000000;
+  color: #00b3ac;
+  z-index: 1;
+  display: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  width: 100%;
+  border: 1px solid #00fff6;
+  top: 60px;
+  position: absolute;
+  left: -10px;
+}
+body header > .header-left .campus-select ul li {
+  line-height: 50px;
+  text-align: center;
+}
+body header > .header-left .campus-select ul li:hover {
+  color: #33fff8;
+}
+body header > .header-left .campus-select ul li:first-child {
+  border-bottom: 1px solid #00fff6;
+}
+body header > .header-right {
+  right: 20px;
+}
+body header > .header-right .date-box {
+  color: #00b3ac;
+}
+body header > .header-right .login-out {
+  cursor: pointer;
+}
+body header > .header-center {
+  letter-spacing: 3px;
+  margin: 0 auto;
+  font-weight: bolder;
+  font-size: 2rem;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+  text-shadow: 0 0 10px #00fff6;
+}
+body header > .header-center span {
+  margin: 0 20px;
+}
+body header > .header-center img {
+  margin-top: 0.7rem;
+  height: 31px;
+  cursor: pointer;
+}
+body .content-box {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
+body .content-box .content {
+  min-width: 100%;
+  height: 100%;
+  padding: 10px 20px 20px;
+  overflow: hidden;
+  display: flex;
+}
+body .content-box .content > li {
+  color: white;
+}
+body .content-box .content .left,
+body .content-box .content .right {
+  width: 27%;
+}
+body .content-box .content .center {
+  width: 46%;
+}

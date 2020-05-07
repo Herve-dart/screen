@@ -1,0 +1,306 @@
+/**
+除登录页面外，大屏布局
+body高度为100%
+溢出省略
+一个页面四类数据表页
+动效切换
+ ________________________________________________________________________
+|_________________________________header_________________________________|
+|        |                 |        ||        |                 |        |
+|  left  |     center      |  right ||  left  |     center      |  right |
+|        |                 |        ||        |                 |        |
+|________|_________________|________||________|_________________|________|
+*/
+html {
+  font-size: 16px;
+}
+body,
+html {
+  height: 100%;
+  max-height: 100%;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  list-style: none;
+  white-space: nowrap;
+}
+*::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+}
+*::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background: #00fff6;
+}
+*::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  border-radius: 10px;
+  background: black;
+}
+body {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../img/datas.jpg');
+  background-size: 100% 100%;
+}
+body .chart-item {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 15px;
+  border: 1px solid #00fff6;
+  border-radius: 3px;
+}
+body .chart-title {
+  margin-bottom: 15px;
+  color: #00fff6;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0 0 10px #00fff6;
+}
+body .chart-title .issure-number {
+  float: right;
+  color: #FCC030;
+}
+body .line {
+  border-bottom: 1px solid #026784;
+  margin: 10px 0;
+}
+body .chart {
+  flex-grow: 1;
+}
+body header {
+  display: flex;
+  justify-content: space-between;
+  color: #00fff6;
+  line-height: 3rem;
+  text-shadow: 3px 3px 50px #00fff6;
+}
+body header .header-left,
+body header .header-right {
+  position: absolute;
+  display: flex;
+  line-height: 60px;
+  align-items: center;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+}
+body header .header-left img,
+body header .header-right img {
+  margin: 0 30px;
+}
+body header > .header-left {
+  left: 20px;
+}
+body header > .header-left .campus-select {
+  color: #00b3ac;
+  position: relative;
+  cursor: pointer;
+}
+body header > .header-left .campus-select img {
+  margin: 0 10px;
+}
+body header > .header-left .campus-select ul {
+  background-color: #000000;
+  color: #00b3ac;
+  z-index: 1;
+  display: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  width: 100%;
+  border: 1px solid #00fff6;
+  top: 60px;
+  position: absolute;
+  left: -10px;
+}
+body header > .header-left .campus-select ul li {
+  line-height: 50px;
+  text-align: center;
+}
+body header > .header-left .campus-select ul li:hover {
+  color: #33fff8;
+}
+body header > .header-left .campus-select ul li:first-child {
+  border-bottom: 1px solid #00fff6;
+}
+body header > .header-right {
+  right: 20px;
+}
+body header > .header-right .date-box {
+  color: #00b3ac;
+}
+body header > .header-right .login-out {
+  cursor: pointer;
+}
+body header > .header-center {
+  letter-spacing: 3px;
+  margin: 0 auto;
+  font-weight: bolder;
+  font-size: 2rem;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+  text-shadow: 0 0 10px #00fff6;
+}
+body header > .header-center span {
+  margin: 0 20px;
+}
+body header > .header-center img {
+  margin-top: 0.7rem;
+  height: 31px;
+  cursor: pointer;
+}
+body .content-box {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
+body .content-box .content {
+  min-width: 100%;
+  height: 100%;
+  padding: 10px 20px 20px;
+  overflow: hidden;
+  display: flex;
+}
+body .content-box .content > li {
+  color: white;
+}
+body .content-box .content .left,
+body .content-box .content .right {
+  width: 27%;
+}
+body .content-box .content .center {
+  width: 46%;
+}
+body {
+  background-image: url('../img/login.jpg');
+  background-size: 100% 100%;
+}
+body .login-box {
+  position: relative;
+}
+body .login-box .title {
+  text-align: center;
+  color: #00fff6;
+  padding-top: 1rem;
+  font-size: 4rem;
+  font-weight: bolder;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 50px #00fff6;
+}
+body .login-box .login {
+  position: relative;
+  margin: 10% auto 0;
+  width: 30%;
+  min-width: 500px;
+  text-align: center;
+  padding: 20px 60px;
+  border: 1px solid #00fff6;
+  font-size: 1.4rem;
+}
+body .login-box .login h5 {
+  margin-bottom: 3rem;
+}
+body .login-box .login h5 span {
+  color: #00fff6;
+  text-shadow: 3px 3px 50px #00fff6;
+  margin: 0 20px;
+}
+body .login-box .login h5 img:nth-child(3) {
+  transform: rotateZ(180deg);
+}
+body .login-box .login > span {
+  position: absolute;
+  width: 40px;
+  height: 30px;
+}
+body .login-box .login span.border-1 {
+  left: 0;
+  top: 0;
+  border-top: 3px solid #00fff6;
+  border-left: 3px solid #00fff6;
+}
+body .login-box .login span.border-2 {
+  right: 0;
+  top: 0;
+  border-top: 3px solid #00fff6;
+  border-right: 3px solid #00fff6;
+}
+body .login-box .login span.border-3 {
+  left: 0;
+  bottom: 0;
+  border-bottom: 3px solid #00fff6;
+  border-left: 3px solid #00fff6;
+}
+body .login-box .login span.border-4 {
+  right: 0;
+  bottom: 0;
+  border-bottom: 3px solid #00fff6;
+  border-right: 3px solid #00fff6;
+}
+body .login-box .login .btn {
+  margin-top: 3rem;
+}
+body .login-box .login .input-item {
+  margin-bottom: 1.5rem;
+}
+body .login-box .login .input-item input {
+  outline: none;
+  height: 60px;
+  border: 1px solid #99fffb;
+  color: #00fff6;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 0.4rem;
+  padding-left: 1.2rem;
+  font-size: 1.2rem;
+}
+body .login-box .login .input-item input::placeholder {
+  color: #ccfffd;
+}
+body .login-box .login .input-item > span {
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  border-radius: 0.4rem;
+  line-height: 60px;
+  background-color: #f0bc08;
+}
+@keyframes rotation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+body .login-box .login .input-item .loading {
+  display: none;
+  cursor: not-allowed;
+  background-color: #f9d350;
+}
+body .login-box .login .input-item .loading > span {
+  animation: rotation 1.8s linear infinite;
+}
+body .login-box .login .input-item .submit:hover {
+  background-color: #f9d350;
+}
+body .footer {
+  color: #00fff6;
+  text-shadow: 0 3px 3px #00fff6;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  padding-bottom: 20px;
+}
+body .footer > div {
+  margin-bottom: 10px;
+}

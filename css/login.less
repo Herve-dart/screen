@@ -1,0 +1,127 @@
+@import './layout.less';
+body{
+    background-image: url('../img/login.jpg');
+    background-size: 100% 100%;
+    .login-box{
+        position: relative;
+        .title{
+            text-align: center;
+            color: @font-color;
+            padding-top: 1.0rem;
+            font-size: 4.0rem;
+            font-weight: bolder;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 50px @font-color;
+        }
+        .login{
+            position: relative;
+            margin: 10% auto 0;
+            width: 30%;
+            min-width: 500px;
+            text-align: center;
+            padding: 20px 60px;
+            border: 1px solid @font-color;
+            font-size: 1.4rem;
+            h5{
+                margin-bottom: 3.0rem;
+                span{
+                    color: @font-color;
+                    text-shadow: 3px 3px 50px @font-color;
+                    margin: 0 20px;
+                }
+                img:nth-child(3){
+                    transform: rotateZ(180deg);
+                }
+            }
+            >span{
+                position: absolute;
+                width: 40px;
+                height: 30px;
+            }
+            span.border-1{
+                left: 0;
+                top: 0;
+                border-top: 3px solid @font-color;
+                border-left: 3px solid @font-color;
+            }
+            span.border-2{
+                right: 0;
+                top: 0;
+                border-top: 3px solid @font-color;
+                border-right: 3px solid @font-color;
+            }
+            span.border-3{
+                left: 0;
+                bottom: 0;
+                border-bottom: 3px solid @font-color;
+                border-left: 3px solid @font-color;
+            }
+            span.border-4{
+                right: 0;
+                bottom: 0;
+                border-bottom: 3px solid @font-color;
+                border-right: 3px solid @font-color;
+            }
+            .btn{
+                margin-top: 3rem;
+            }
+            .input-item{
+                margin-bottom: 1.5rem;
+                input{
+                    outline: none;
+                    height: 60px;
+                    border: 1px solid lighten(@font-color, 30%);
+                    color: @font-color;
+                    width: 100%;
+                    background-color: rgba(0, 0, 0, 0);
+                    border-radius: 0.4rem;
+                    padding-left: 1.2rem;
+                    font-size: 1.2rem;
+                }
+                input::placeholder{
+                    color: lighten(@font-color, 40%);
+                }
+                >span{
+                    color: white;
+                    cursor: pointer;
+                    display: inline-block;
+                    width: 100%;
+                    border-radius: 0.4rem;
+                    line-height: 60px;
+                    background-color: rgb(240, 188, 8);
+                }
+                @keyframes rotation {
+                    0%{
+                        transform: rotateZ(0deg);
+                    }
+                    100%{
+                        transform: rotateZ(360deg);
+                    }
+                }
+                .loading{
+                    display: none;
+                    cursor: not-allowed;
+                    background-color: lighten(rgb(240, 188, 8), 16%);
+                    >span{
+                        animation: rotation 1.8s linear infinite;
+                    }
+                }
+                .submit:hover{
+                    background-color: lighten(rgb(240, 188, 8), 16%);
+                }
+            }
+        }
+    }
+    .footer{
+        color: @font-color;
+        text-shadow: 0 3px 3px @font-color;
+        position: fixed;
+        width: 100%;
+        text-align: center;
+        bottom: 0;
+        padding-bottom: 20px;
+        >div{
+            margin-bottom: 10px;
+        }
+    }
+} 
