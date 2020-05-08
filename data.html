@@ -435,7 +435,26 @@
             </li>
         </ul>
         <ul class="content">
-            
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="alert-academy">
+                <div></div>
+                <span class="close-alert">关闭</span>
+            </li>
         </ul>
         <div class="rate-box">
             <div class="mode"></div>
@@ -516,7 +535,6 @@
                     dataType: 'json',
                     success: function(res){
                         //就业数据
-                        console.log(res.content.dataone);
                         let jyData = res.content.jywData;
                         let dataone = res.content.dataone;
                         provType = dataone.locationToTypeMap;
@@ -901,111 +919,6 @@
                 let suspectedCount = 0;//疑似数量
                 let deadCount = 0;//死亡数量
                 let mapName = 'china';//prove
-                //全国数据
-                //#ID：center-bottom
-                // let CBX = echarts.init(document.getElementById('center-bottom-chart'));
-                // let CBXOption = {
-                //     tooltip: {
-                //         trigger: 'item',
-                //         formatter: '{a} <br/>{b}: {c} '
-                //     },
-                //     color: color,
-                //     grid: [//定义柱状图位置，因为是第一个
-                //         {
-                //             top: '10%',
-                //             left: '25%',
-                //             right: '5%',
-                //             bottom: '0%',
-                //             containLabel: true
-                //         }
-                //     ],
-                //     xAxis: {
-                //         show: false,
-                //         type: 'value',
-                //         axisLabel: {
-                //             color: 'white'
-                //         },
-                //         splitLine: {
-                //             show: false
-                //         }
-                //     },
-                //     yAxis: {
-                //         type: 'category',
-                //         data: [ '专科生', '博士生', '研究生', '本科生'],
-                //         axisLabel: {
-                //             color: 'white',
-                //             interval: 0
-                //         }
-                //     },
-                //     series: [
-                //         {
-                //             name: 'A类',
-                //             type: 'bar',
-                //             stack: '总量',
-                //             label: {
-                //                 show: false,
-                //                 position: 'insideRight'
-                //             },
-                //             data: [10, 330, 320, 30],
-                //             barWidth: 10
-                //         },
-                //         {
-                //             name: 'B类',
-                //             type: 'bar',
-                //             stack: '总量',
-                //             label: {
-                //                 show: false,
-                //                 position: 'insideRight'
-                //             },
-                //             data: [390, 330, 320, 100],
-                //             barWidth: 10
-                //         },
-                //         {
-                //             name: 'C类',
-                //             type: 'bar',
-                //             stack: '总量',
-                //             label: {
-                //                 show: false,
-                //                 position: 'insideRight'
-                //             },
-                //             data: [390, 330, 320, 60],
-                //             barWidth: 10
-                //         },
-                //         {
-                //             name: '学生类别',
-                //             type: 'pie',
-                //             clockwise: false,
-                //             radius: ['60%', '80%'],
-                //             avoidLabelOverlap: false,
-                //             center: ['10%', '50%'],
-                //             label: {
-                //                 normal: {
-                //                     show: false,
-                //                     position: 'center',
-                //                     fontSize: 20
-                //                 },
-                //                 emphasis: {
-                //                     show: true,
-                //                     textStyle: {
-                //                         fontWeight: 'bold'
-                //                     }
-                //                 }
-                //             },
-                //             labelLine: {
-                //                 normal: {
-                //                     show: true
-                //                 }
-                //             },
-                //             data: [
-                //                 {value: 335, name: 'A类'},
-                //                 {value: 310, name: 'B类'},
-                //                 {value: 234, name: 'C类'},
-                //             ]
-                //         },
-
-                //     ]
-                // };
-                // CBX.setOption(CBXOption);
 
                 let rightBottomData = '';
                 $.ajax({
@@ -1037,7 +950,6 @@
                             for(let item of res.results){
                                 if(item.countryName === '中国'&&item.provinceShortName!='中国'){
                                     stuValue = 0;
-                                    console.log(item);
                                     for(let stu of stuData){
                                         if(stu.k.includes(item.provinceShortName)){
                                             stuValue = stu.v;
@@ -2163,13 +2075,32 @@
                     $('.content:nth-child(2)').css('filter', 'blur(5px)');
                     $('.rate-box').show();
                 });
+                let index = 1;
                 $('header .to-right').click(function(){
-                    $('.content:nth-child(1)').css('left', '-100%');
-                    $('.content:nth-child(2)').css('left', '0');
+                    if(index == 1){
+                        $('.content:nth-child(1)').css('left', '-100%');
+                        $('.content:nth-child(2)').css('left', '0');
+                        $('.content:nth-child(3)').css('left', '100%');
+                        index ++;
+                    }else if(index == 2){
+                        $('.content:nth-child(1)').css('left', '-200%');
+                        $('.content:nth-child(2)').css('left', '-100%');
+                        $('.content:nth-child(3)').css('left', '0');
+                        index ++;
+                    }
                 });
                 $('header .to-left').click(function(){
-                    $('.content:nth-child(1)').css('left', '0');
-                    $('.content:nth-child(2)').css('left', '100%');
+                    if(index == 3){
+                        $('.content:nth-child(1)').css('left', '-100%');
+                        $('.content:nth-child(2)').css('left', '0');
+                        $('.content:nth-child(3)').css('left', '100%');
+                        index --;
+                    }else if(index == 2){
+                        $('.content:nth-child(1)').css('left', '0');
+                        $('.content:nth-child(2)').css('left', '100%');
+                        $('.content:nth-child(3)').css('left', '200%');
+                        index --;
+                    }
                 });
                 function resize(){
                     myChart.resize();
@@ -2184,5 +2115,6 @@
             });
         }
     </script>
+    <script src="./js/three.js"></script>
 </body>
 </html>

@@ -344,6 +344,9 @@ body .content .filter-box .hide-detail {
   cursor: pointer;
   color: #00fff6;
 }
+body .content:first-child {
+  left: 0;
+}
 body .content:first-child .prov-detail {
   display: flex;
   flex-direction: column;
@@ -655,6 +658,54 @@ body .content:nth-child(2) .right > div.chart-item:nth-child(2) .right-bottom-bo
   background-color: rgba(4, 110, 140, 0.6);
   top: 15%;
   z-index: -1;
+}
+body .content:nth-child(3) {
+  left: 200%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+body .content:nth-child(3) > li {
+  border-radius: 4px;
+  overflow: hidden;
+  width: 24.5%;
+  min-width: 24.5%;
+  height: 24%;
+  min-height: 24%;
+  position: relative;
+  border: 1px solid #5fddf3;
+}
+body .content:nth-child(3) > li::after {
+  position: absolute;
+  color: white;
+  padding: 3px 4px;
+  background-color: #000;
+  top: 0;
+  left: 0;
+}
+body .content:nth-child(3) > li.alert-academy {
+  visibility: hidden;
+  position: absolute;
+  width: 700px;
+  height: 500px;
+  z-index: 10;
+  left: 50%;
+  top: 60px;
+  transform: translateX(-50%);
+  background-color: #052937;
+}
+body .content:nth-child(3) > li.alert-academy > div {
+  height: 100%;
+}
+body .content:nth-child(3) > li.alert-academy .close-alert {
+  width: 40px;
+  background-color: transparent;
+  cursor: pointer;
+  color: white;
+  padding: 6px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 body .rate-box {
   display: none;
